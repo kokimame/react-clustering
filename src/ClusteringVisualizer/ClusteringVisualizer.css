@@ -1,0 +1,28 @@
+.points-container {
+    width: 100%;
+    height: 100%;
+    bottom: 0px;
+}
+.a-point{
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    display: inline-block;
+    border-radius: 50%;
+}
+
+.buttons button {
+    background-color: rgb(169, 194, 218); 
+    border: none;
+    color: rgb(72, 86, 88);
+    opacity: 0.7;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    outline: 0;
+    display: block; /* Make the buttons appear below each other */
+    font: 15px "Century Gothic", Futura, sans-serif;
+}
+.buttons button:not(:last-child) {
+    border-bottom: none; /* Prevent double borders */
+}
