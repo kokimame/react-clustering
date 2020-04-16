@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/react-clustering/static/css/main.95a46242.chunk.css",
+    "main.js": "/react-clustering/static/js/main.a1703a22.chunk.js",
+    "main.js.map": "/react-clustering/static/js/main.a1703a22.chunk.js.map",
+    "runtime-main.js": "/react-clustering/static/js/runtime-main.f95a516f.js",
+    "runtime-main.js.map": "/react-clustering/static/js/runtime-main.f95a516f.js.map",
+    "static/js/2.37baf0ad.chunk.js": "/react-clustering/static/js/2.37baf0ad.chunk.js",
+    "static/js/2.37baf0ad.chunk.js.map": "/react-clustering/static/js/2.37baf0ad.chunk.js.map",
+    "index.html": "/react-clustering/index.html",
+    "precache-manifest.6c2f09cdee58c527d321c00deb391e79.js": "/react-clustering/precache-manifest.6c2f09cdee58c527d321c00deb391e79.js",
+    "service-worker.js": "/react-clustering/service-worker.js",
+    "static/css/main.95a46242.chunk.css.map": "/react-clustering/static/css/main.95a46242.chunk.css.map",
+    "static/js/2.37baf0ad.chunk.js.LICENSE.txt": "/react-clustering/static/js/2.37baf0ad.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.f95a516f.js",
+    "static/js/2.37baf0ad.chunk.js",
+    "static/css/main.95a46242.chunk.css",
+    "static/js/main.a1703a22.chunk.js"
+  ]
+}
