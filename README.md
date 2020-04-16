@@ -1,3 +1,6 @@
+## Credit
+This preliminary app is built on the top of [Sorting-Visualizer](https://github.com/CSALS/Sorting-Visualizer)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
