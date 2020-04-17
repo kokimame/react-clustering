@@ -1,5 +1,6 @@
 import React from 'react';
 import './ClusteringVisualizer.css'
+import { getKmeansClusteredPoints } from '../ClusteringAlgorithms/Kmeans';
 
 let WINDOW_WIDTH = window.innerWidth;
 let WINDOW_HEIGHT = window.innerHeight;
@@ -35,6 +36,10 @@ class ClusteringVisualizer extends React.Component {
         }
         this.setState({points: points});
     }
+
+    KmeansClustering() {
+        const [points, colors] = getKmeansClusteredPoints(this.state.points);
+    }
     render() {
         const points = this.state.points;
         const TOTAL_BUTTONS = 5;
@@ -60,6 +65,16 @@ class ClusteringVisualizer extends React.Component {
                     onClick={() => this.resetPoints()}>
                     Generate New Points
                 </button>
+                <button title="K-means Clustering" id="KmeansBtn"
+                    style={{ position: 'relative', top:`${0.5*(WINDOW_HEIGHT-20)/TOTAL_BUTTONS}px`}} 
+                    onClick={() => this.KmeansClustering()}>
+                    K-means Clustering
+                </button>
+                {/* <button title="Graph-based Clustering" id="GraphBtn"
+                    style={{ position: 'relative', top:`${1.5*(WINDOW_HEIGHT-20)/TOTAL_BUTTONS}px`}} 
+                    onClick={() => {}}>
+                    Graph-based Clustering (Not yet)
+                </button> */}
             </div>
             </>
         );
