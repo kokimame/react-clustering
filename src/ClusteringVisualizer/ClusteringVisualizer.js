@@ -10,6 +10,16 @@ function reportWindowSize() {
     WINDOW_WIDTH = window.innerWidth;
     WINDOW_HEIGHT = window.innerHeight;
 }
+
+function shuffleArray(array) {
+    for (var i = array.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+    return array;
+}
 window.onresize = reportWindowSize;
 
 const PRIMARY_COLOR = 'turquoise';
@@ -27,7 +37,7 @@ class ClusteringVisualizer extends React.Component {
         this.resetPoints();
     }
     resetPoints() {
-        const points = [];
+        var points = [];
         for (let i = 0; i < NUMBER_OF_POINTS / 2; i++) {
             points.push([
                 randomIntFromInterval(2*WINDOW_WIDTH/5, WINDOW_WIDTH),
@@ -40,6 +50,8 @@ class ClusteringVisualizer extends React.Component {
                 randomIntFromInterval(0, 3*WINDOW_HEIGHT/5)
             ])
         }
+
+        points = shuffleArray(points);
         this.setState({points: points});
 
         const currentPoints = document.getElementsByClassName('a-point');
@@ -50,9 +62,10 @@ class ClusteringVisualizer extends React.Component {
     }
 
     KmeansClustering() {
-        const [points, colors] = getKmeansClusteredPoints(this.state.points);
+        const colors = getKmeansClusteredPoints(this.state.points);
         const currentPoints = document.getElementsByClassName('a-point');
-        for (let i = 0; i < colors.length; i++) {
+
+        for (let i = 0; i < currentPoints.length; i++) {
             const pointStyle = currentPoints[i].style;
             pointStyle.backgroundColor = colors[i];
         }

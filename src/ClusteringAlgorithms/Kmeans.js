@@ -19,18 +19,18 @@ function get2dEuclidDistance(p1, p2) {
 
 export function getKmeansClusteredPoints(points) {
     const K = 2;
-    const colors = [];
     const auxillaryPoints = points.slice();
-    KmeansClustering(K, auxillaryPoints, colors);
-    points = auxillaryPoints
+    const colors = KmeansClustering(K, auxillaryPoints);
 
-    return [points, colors];
+    return colors;
 }
 
-function KmeansClustering(K, points, colors) {
+function KmeansClustering(K, points) {
     const N = points.length;
-    const centroids = Array.from({length: K}, v => 0);
-    const clusteredPoints = Array.from({length: K}, v => []);
+    var centroids = Array.from({length: K}, v => 0);
+    var clusteredPoints = Array.from({length: K}, v => []);
+    var clusteredIndex = Array.from({length: K}, v => []);
+    // Initialize clusters
     for (let k = 0; k < K; k++) {
         for (let i = 0; i < N; i++) {
             if (i % K === k) {
@@ -40,29 +40,29 @@ function KmeansClustering(K, points, colors) {
         centroids[k] = get2dCentroid(clusteredPoints[k]);
     }
 
-    for (let epoch = 0; epoch < 50; epoch++) {
-        const clusteredPoints = Array.from({length: K}, v => []);
+    for (let epoch = 0; epoch < 3; epoch++) {
+        clusteredPoints = Array.from({length: K}, v => []);
+        clusteredIndex = Array.from({length: K}, v => []);
+
         for (let i = 0; i < N; i++) {
             const distanceArray = Array.from(
                 {length: K}, (v, j) => get2dEuclidDistance(points[i], centroids[j])
             )
             const nearest = distanceArray.indexOf(Math.min(...distanceArray));
-            console.log(distanceArray, nearest)
             clusteredPoints[nearest].push(points[i]);
+            clusteredIndex[nearest].push(i)
         }
-        const newCentroids = Array.from({length: K}, v => 0);
-        for (let k = 0; k < K; k++) {
-            newCentroids[k] = get2dCentroid(clusteredPoints[k]);
-        }
-        // if (centroids == newCentroids)
+        const newCentroids = Array.from(
+            {length: K}, (v, k) => get2dCentroid(clusteredPoints[k])
+        );
+        centroids = newCentroids;
     }
 
-    const flatClustedPoints = [];
-    clusteredPoints.forEach((cluster, index) => {
-        cluster.forEach(point => {
-            flatClustedPoints.push(point);
-            colors.push(COLOR_PALLATE[index]);
-        })
-    })
-    points = flatClustedPoints;
+    const colors = Array.from({length : points.length})
+    for (let k = 0; k < clusteredIndex.length; k++) {
+        for (let i = 0; i < clusteredIndex[k].length; i++) {
+            colors[clusteredIndex[k][i]] = COLOR_PALLATE[k];
+        }
+    }
+    return colors;
 }
