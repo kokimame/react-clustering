@@ -28,17 +28,34 @@ class ClusteringVisualizer extends React.Component {
     }
     resetPoints() {
         const points = [];
-        for (let i = 0; i < NUMBER_OF_POINTS; i++) {
+        for (let i = 0; i < NUMBER_OF_POINTS / 2; i++) {
             points.push([
-                randomIntFromInterval(0, WINDOW_WIDTH),
-                randomIntFromInterval(0, WINDOW_HEIGHT)
+                randomIntFromInterval(2*WINDOW_WIDTH/5, WINDOW_WIDTH),
+                randomIntFromInterval(2*WINDOW_HEIGHT/5, WINDOW_HEIGHT)
+            ])
+        }
+        for (let i = NUMBER_OF_POINTS / 2; i < NUMBER_OF_POINTS; i++) {
+            points.push([
+                randomIntFromInterval(0, 3*WINDOW_WIDTH/5),
+                randomIntFromInterval(0, 3*WINDOW_HEIGHT/5)
             ])
         }
         this.setState({points: points});
+
+        const currentPoints = document.getElementsByClassName('a-point');
+        for (let i = 0; i < currentPoints.length; i++) {
+            const pointStyle = currentPoints[i].style;
+            pointStyle.backgroundColor = PRIMARY_COLOR;
+        }
     }
 
     KmeansClustering() {
         const [points, colors] = getKmeansClusteredPoints(this.state.points);
+        const currentPoints = document.getElementsByClassName('a-point');
+        for (let i = 0; i < colors.length; i++) {
+            const pointStyle = currentPoints[i].style;
+            pointStyle.backgroundColor = colors[i];
+        }
     }
     render() {
         const points = this.state.points;
