@@ -39,7 +39,6 @@ function KmeansClustering(K, points, colors) {
         }
         centroids[k] = get2dCentroid(clusteredPoints[k]);
     }
-    console.log(centroids);
 
     for (let epoch = 0; epoch < 50; epoch++) {
         const clusteredPoints = Array.from({length: K}, v => []);
